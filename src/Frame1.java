@@ -79,6 +79,8 @@ public class Frame1 extends JFrame {
         myPan4.setBackground(Color.RED);
         myFrame.add(myPan4, BorderLayout.CENTER);
 
+        JPanel myPan5 = new JPanel();
+
         new Frame1();
     }
 }
