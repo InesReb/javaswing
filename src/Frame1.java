@@ -3,58 +3,71 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Frame1 extends JFrame {
-    public Frame1(){
+public class Frame1 extends JFrame implements ActionListener{
+    private  JTextField text_nom;
+    private  JTextField text_prenom;
+    private  JTextField text_email;
+    private  JTextField text_nump;
+    private  JTextField text_numf;
+    private  JTextField text_adresse;
+    private  JTextField text_classe;
+    private  JTextField text_niveau;
+    private JLabel nom;
+    private JLabel prenom;
+    private JLabel email;
+    private JLabel nump;
+    private JLabel numf;
+    private JLabel adresse;
+    private JLabel classe;
+    private JLabel niveau;
+    private JButton btn_ok;
+    private JButton btn_annuler;
 
-            JButton btn_annuler = new JButton("Annuler");
-            btn_annuler.setBounds(150,310,100,40);
-            JTextField text_nom = new JTextField();
-            text_nom.setBounds(10,10,365,290);
-            add(btn_annuler);
-            add(text_nom);
 
-            btn_annuler.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    text_nom.setText("");
-                }
-            });
-    }
-
-    public static void main(String[] args) {
-        JTextField text_nom = new JTextField();
-        JTextField text_prenom = new JTextField();
-        JTextField text_email = new JTextField();
-        JTextField text_nump = new JTextField();
-        JTextField text_numf = new JTextField();
-        JTextField text_adresse = new JTextField();
-        JTextField text_classe = new JTextField();
-        JTextField text_niveau = new JTextField();
-        JButton btn_ok = new JButton("OK");
-        JButton btn_annuler = new JButton("Annuler");
+    public Frame1() {
+        text_nom = new JTextField();
+        text_prenom = new JTextField();
+        text_email = new JTextField();
+        text_nump = new JTextField();
+        text_numf = new JTextField();
+        text_adresse = new JTextField();
+        text_classe = new JTextField();
+        text_niveau = new JTextField();
+        nom = new JLabel("Nom");
+        btn_ok = new JButton("OK");
+        btn_annuler = new JButton("Annuler");
 
         JFrame myFrame = new JFrame("frame 1");
         myFrame.setLayout(new BorderLayout(5,5));
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new GridLayout(0, 4,5,5)); //any rows, 2 cols
-        myPanel.add(new JLabel("Nom"));
+
+        myPanel.add(nom);
         myPanel.add(text_nom);
-        myPanel.add(new JLabel("Prenom"));
+
+        myPanel.add(prenom);
         myPanel.add(text_prenom);
-        myPanel.add(new JLabel("Email"));
+
+        myPanel.add(email);
         myPanel.add(text_email);
-        myPanel.add(new JLabel("Numéro portable"));
+
+        myPanel.add(nump);
         myPanel.add(text_nump);
-        myPanel.add(new JLabel("classe"));
+
+        myPanel.add(classe);
         myPanel.add(text_classe);
-        myPanel.add(new JLabel("Adresse"));
+
+        myPanel.add(adresse);
         myPanel.add(text_adresse);
-        myPanel.add(new JLabel("Numéro fixe"));
+
+        myPanel.add(numf);
         myPanel.add(text_numf);
-        myPanel.add(new JLabel("Niveau"));
+
+        myPanel.add(niveau);
         myPanel.add(text_niveau);
+
         myPanel.add(new JLabel("*champ obligatoire"));
-        myPanel.add(btn_ok);
-        myPanel.add(btn_annuler);
+
         myFrame.add(myPanel, BorderLayout.NORTH);
         myFrame.pack();
         myFrame.setVisible(true);
@@ -79,9 +92,33 @@ public class Frame1 extends JFrame {
         myPan4.setBackground(Color.RED);
         myFrame.add(myPan4, BorderLayout.CENTER);
 
-        JPanel myPan5 = new JPanel();
+        btn_ok.addActionListener(this);
+        btn_annuler.addActionListener(this);
+        myPanel.add(btn_ok);
+        myPanel.add(btn_annuler);
 
-        new Frame1();
+    }
+
+
+    public void actionPerformed (ActionEvent e){
+
+        if(e.getActionCommand().equals("OK")){
+            if (text_nom.getText().length() == 0 || text_prenom.getText().length() == 0 || text_email.getText().length() == 0 || text_adresse.getText().length() == 0 || text_numf.getText().length() == 0 || text_nump.getText().length() == 0 || text_classe.getText().length() == 0 || text_niveau.getText().length() == 0)
+            {
+               JOptionPane.showMessageDialog(null, "Veuillez remplir le champ" + nom.getText());
+            }
+        }
+
+       if(e.getActionCommand().equals("Annuler")){
+           text_nom.setText("");
+           text_prenom.setText("");
+           text_adresse.setText("");
+           text_classe.setText("");
+           text_niveau.setText("");
+           text_numf.setText("");
+           text_nump.setText("");
+           text_email.setText("");
+       }
     }
 }
 
